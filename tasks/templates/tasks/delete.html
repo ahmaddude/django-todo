@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Task</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: #ffe4f0;
+            min-height: 100vh;
+            padding: 30px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            max-width: 450px;
+            width: 100%;
+            padding: 35px;
+        }
+
+        h3 {
+            color: #d63384;
+            margin-bottom: 15px;
+            font-size: 22px;
+            font-weight: 600;
+        }
+
+        p {
+            color: #555;
+            font-size: 15px;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        .task-name {
+            color: #333;
+            font-weight: 600;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        form {
+            flex: 1;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 12px 24px;
+            background: #d63384;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background: #c12a71;
+        }
+
+        input[type="submit"]:active {
+            background: #a82160;
+        }
+
+        .cancel-link {
+            display: inline-block;
+            padding: 12px 24px;
+            background: #e0e0e0;
+            color: #666;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 15px;
+            text-align: center;
+            flex: 1;
+        }
+
+        .cancel-link:hover {
+            background: #d0d0d0;
+            color: #333;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 25px;
+            }
+
+            h3 {
+                font-size: 20px;
+            }
+
+            .button-group {
+                flex-direction: column-reverse;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h3>Delete Task</h3>
+        <p>Are you sure you want to delete <span class="task-name">"{{item}}"</span>?</p>
+
+        <div class="button-group">
+            <a href="{% url 'list' %}" class="cancel-link">Cancel</a>
+            <form method="post" action="">
+                {% csrf_token %}
+                <input type="submit" value="Delete">
+            </form>
+        </div>
+    </div>
+</body>
+</html>
